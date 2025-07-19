@@ -11,9 +11,33 @@
 namespace game {
 namespace ecs {
 
+/**
+ * @brief Unique identifier for entities in the ECS system
+ * 
+ * EntityID is a 64-bit unsigned integer that uniquely identifies
+ * each entity within a system. IDs are assigned sequentially
+ * when entities are created and are never reused during runtime.
+ */
 using EntityID = std::uint64_t;
+
+/**
+ * @brief Container mapping component types to their instances
+ * 
+ * EntityComponents stores all components attached to an entity using
+ * type_index as keys for fast component lookup by type. Each entity
+ * can have at most one component of each type, and components are
+ * stored as unique pointers for automatic memory management.
+ */
 using EntityComponents = std::unordered_map<std::type_index, std::unique_ptr<Component>>;
 
+/**
+ * @brief Core entity class in the ECS architecture
+ * 
+ * An entity is a unique identifier that components can be attached to.
+ * It serves as a container for components and provides methods to add,
+ * retrieve, and check for components. Each entity has a unique ID and
+ * belongs to a specific system.
+ */
 class Entity {
     EntityID id_;
     EntityComponents components_;

@@ -8,8 +8,24 @@
 namespace game {
 namespace ecs {
 
+/**
+ * @brief Container mapping entity IDs to their instances
+ * 
+ * SystemEntities stores all entities managed by a system using
+ * EntityID as keys for fast entity lookup. Each system maintains
+ * its own collection of entities that it processes during the tick cycle.
+ * Entities are stored as unique pointers for automatic memory management.
+ */
 using SystemEntities = std::unordered_map<EntityID, std::unique_ptr<Entity>>;
 
+/**
+ * @brief Base class for all ECS systems that process entities
+ * 
+ * Systems contain the game logic that operates on entities with specific components.
+ * Each system manages its own collection of entities and processes them during the tick cycle.
+ * Systems are responsible for initializing, updating, and shutting down their functionality,
+ * as well as managing the lifecycle of entities they own.
+ */
 class System {
     EntityID next_entity_id_{1};
     SystemEntities entities_;

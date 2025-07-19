@@ -10,8 +10,25 @@
 namespace game {
 namespace ecs {
 
+/**
+ * @brief Container mapping system types to their instances
+ * 
+ * WorldSystems stores all systems registered with the world using
+ * type_index as keys for fast system lookup by type. Each world
+ * can have at most one system of each type, and systems are
+ * stored as unique pointers for automatic memory management.
+ */
 using WorldSystems = std::unordered_map<std::type_index, std::unique_ptr<System>>;
 
+/**
+ * @brief Central coordinator for the ECS architecture
+ * 
+ * World manages the lifecycle of all systems in the ECS framework.
+ * It handles system registration, initialization, updating, and shutdown.
+ * The World class serves as the main entry point for the ECS framework,
+ * coordinating the execution of all systems during the game loop.
+ * Each world can have at most one system of each type.
+ */
 class World {
     WorldSystems systems_;
 

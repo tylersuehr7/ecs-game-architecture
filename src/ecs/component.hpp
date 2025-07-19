@@ -5,7 +5,13 @@ namespace game {
 namespace ecs {
 
 class Entity;
-
+/**
+ * @brief Base class for all ECS components
+ * 
+ * Components are pure data containers that can be attached to entities.
+ * They don't contain any game logic, only data that systems operate on.
+ * Each component automatically stores a pointer to its owner entity.
+ */
 struct Component {
     Entity* owner{nullptr};
     virtual ~Component() = default;
