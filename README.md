@@ -1,4 +1,4 @@
-# ECS Architecture V1
+# ECS Architecture
 
 A lightweight, modern C++ Entity-Component-System (ECS) framework designed for game development. This implementation prioritizes simplicity and ease of use while maintaining good performance, making it ideal for arcade games, indie projects, and educational purposes.
 
