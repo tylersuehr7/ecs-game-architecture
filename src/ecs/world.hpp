@@ -70,33 +70,53 @@ public:
         return static_cast<T*>(it->second.get());
     }
 
+    template<typename T>
+    [[nodiscard]] const T* get_system() const noexcept {
+        static_assert(std::is_base_of_v<System, T>, "T must inherit System");
+
+        const auto index = std::type_index(typeid(T));
+        const auto it = systems_.find(index);
+
+        if (it == systems_.end()) {
+            return nullptr;
+        }
+
+        return static_cast<const T*>(it->second.get());
+    }
+
     template<typename T, typename... Args>
     [[nodiscard]] T* add_system(Args&&... args) noexcept {
         static_assert(std::is_base_of_v<System, T>, "T must inherit System");
 
+        // Check if system already exists
+        const auto index = std::type_index(typeid(T));
+        if (systems_.find(index) != systems_.end()) {
+            return nullptr; // System already exists
+        }
+
         auto system = std::make_unique<T>(std::forward<Args>(args)...);
         auto* system_ptr = system.get();
         
-        const auto index = std::type_index(typeid(T));
         systems_.emplace(index, std::move(system));
 
         return system_ptr;
     }
 
     template<typename T>
-    void remove_system() noexcept {
+    bool remove_system() noexcept {
         static_assert(std::is_base_of_v<System, T>, "T must inherit System");
         const auto index = std::type_index(typeid(T));
         const auto it = systems_.find(index);
 
         if (it == systems_.end()) {
-            return;
+            return false; // System doesn't exist
         }
 
         // Call system shutdown lifecycle event
         it->second->shutdown();
 
         systems_.erase(it);
+        return true;
     }
 };
 

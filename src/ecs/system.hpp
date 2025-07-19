@@ -15,6 +15,8 @@ class System {
     SystemEntities entities_;
 
 public:
+    virtual ~System() = default;
+
     virtual bool initialize() noexcept {
         return true;
     }
@@ -42,6 +44,16 @@ public:
         return it->second.get();
     }
 
+    [[nodiscard]] const Entity* get_entity(const EntityID id) const noexcept {
+        const auto it = entities_.find(id);
+        
+        if (it == entities_.end()) {
+            return nullptr;
+        }
+
+        return it->second.get();
+    }
+
     [[nodiscard]] Entity* add_entity() noexcept {
         const auto new_entity_id = next_entity_id_++;
 
@@ -53,8 +65,14 @@ public:
         return entity_ptr;
     }
 
-    void remove_entity(const EntityID id) {
-        entities_.erase(id);
+    bool remove_entity(const EntityID id) noexcept {
+        const auto it = entities_.find(id);
+        if (it == entities_.end()) {
+            return false; // Entity doesn't exist
+        }
+        
+        entities_.erase(it);
+        return true;
     }
 };
 
