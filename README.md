@@ -24,8 +24,8 @@ The framework consists of four core components:
 ## 🔧 Quick Start
 
 ### Prerequisites
-- C++17 compatible compiler (GCC 7+, Clang 5+, MSVC 2017+)
-- CMake 3.10 or higher
+- C++20 compatible compiler (GCC 10+, Clang 11+, MSVC 2019+)
+- CMake 3.20 or higher
 
 ### Building
 ```bash
@@ -105,6 +105,12 @@ This ECS framework is perfect for:
 ```
 ecs-architecture1/
 ├── src/
+|   |-- demo/                   # Complete working example
+│   │   ├── main.cpp            # Demo application
+|   |   ├── simple_example.cpp  # Super simple demo application
+│   │   ├── components.hpp      # Example game components
+│   │   ├── systems.hpp         # Example game systems
+│   │   └── README.md           # Demo documentation
 │   ├── ecs/
 │   │   ├── component.hpp    # Base component interface
 │   │   ├── entity.hpp       # Entity management
