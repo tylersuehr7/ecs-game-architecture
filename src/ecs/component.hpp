@@ -5,6 +5,7 @@ namespace game {
 namespace ecs {
 
 class Entity;
+
 /**
  * @brief Base class for all ECS components
  * 
