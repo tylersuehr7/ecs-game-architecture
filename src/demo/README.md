@@ -9,7 +9,6 @@ This directory contains comprehensive examples demonstrating how to use the ECS 
 - **`components.hpp`** - Defines various component types showcasing different data patterns
 - **`systems.hpp`** - Implements systems that process entities with specific component combinations
 - **`simple_example.cpp`** - Basic example perfect for beginners learning ECS concepts
-- **`demo_main.cpp`** - Advanced interactive demo showing complex entity interactions
 
 ### Component Showcase
 
@@ -46,8 +45,7 @@ The demo includes the following systems:
 cd build
 cmake ..
 make
-# Add simple_example to CMakeLists.txt first, then:
-./simple_example
+./ecs_example
 ```
 
 The simple example demonstrates:
@@ -55,25 +53,6 @@ The simple example demonstrates:
 - Creating entities with components
 - Running simulation steps
 - Component manipulation and removal
-
-### Interactive Demo
-
-```bash
-# Build and run the interactive demo
-cd build
-cmake ..
-make
-# Add demo_main to CMakeLists.txt first, then:
-./demo_main
-```
-
-The interactive demo features:
-- Real-time console rendering
-- Multiple entity types (Player, Enemies, NPCs, Effects)
-- AI behaviors (patrolling, chasing, attacking)
-- Health management and entity death
-- Temporary effects with auto-cleanup
-- Simulated player movement
 
 ## Key ECS Concepts Demonstrated
 

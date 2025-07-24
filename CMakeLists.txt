@@ -15,10 +15,9 @@ set(
 
 set(
     EXAMPLE_SOURCES
-    src/demo/main.cpp
+    src/demo/simple_example.cpp
     src/demo/components.hpp
     src/demo/systems.hpp
-    src/demo/simple_example.cpp
     src/ecs/component.hpp
     src/ecs/entity.hpp
     src/ecs/system.hpp
@@ -38,23 +37,12 @@ target_include_directories(
 
 # Demo executables
 add_executable(
-    ecs_simple_example
-    src/demo/simple_example.cpp
+    ecs_example
+    ${EXAMPLE_SOURCES}
 )
 
 target_include_directories(
-    ecs_simple_example
-    PUBLIC 
-    ${CMAKE_CURRENT_LIST_DIR}/src
-)
-
-add_executable(
-    ecs_demo
-    src/demo/main.cpp
-)
-
-target_include_directories(
-    ecs_demo
+    ecs_example
     PUBLIC 
     ${CMAKE_CURRENT_LIST_DIR}/src
 )
